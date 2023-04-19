@@ -1,0 +1,82 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+body{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.nav{
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 10px 20px;
+}
+ul{
+  display: flex;
+  gap: 10px;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+.gi-search{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  gap:20px;
+}
+.q-field{
+  height: 27px;
+  width: 443px;
+  padding: 20px;
+  border: 1px solid;
+  border-radius: 27px;
+}
+input[type='submit']{
+  background-color: #f8f9fa;
+  border: 1px solid #f8f9fa;
+  width: 127.4px;
+  height: 36px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+input[type='submit']:hover{
+  box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+  border: 1px solid #dadce0;
+}
+.ad-search{
+  padding: 27px 55px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+.field{
+  display: grid;
+  grid-template-columns: 167px 500px;
+  font-size: 14px;
+  align-items: center;
+}
+.field input{
+  padding: 5px;
+}
+.num-inputs{
+  display: flex;
+  gap: 17px;
+  align-items: center;
+}
+.num-inputs > input{
+  flex: 1;
+}
+.ad-search > input{
+  background-color: #4d90fe;
+  color: #fff;
+}
