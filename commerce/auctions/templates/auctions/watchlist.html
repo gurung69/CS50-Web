@@ -1,0 +1,20 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>WatchList</h2>
+
+    {% for watchlist in watchlists %}
+        <a href="{% url 'view' id=watchlist.listing.id %}">
+            <div class="pv-container">
+                <div class="pv-img-container">
+                    <img src="{{ watchlist.listing.img_url }}" class="pv-img">
+                </div>
+                <div class="pv-info-container">
+                    <h2>{{ watchlist.listing.title }}</h2>
+                    <p>Price: ${{ watchlist.listing.price|floatformat:2 }}</p>
+                    <p>{{ watchlist.listing.created_on }} (U.T.C)</p>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+{% endblock %}

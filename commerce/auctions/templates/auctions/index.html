@@ -1,0 +1,19 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Active Listings</h2>
+    {% for listing in listings %}
+        <a href="{% url 'view' id=listing.id %}">
+            <div class="pv-container">
+                <div class="pv-img-container">
+                    <img src="{{ listing.img_url }}" class="pv-img">
+                </div>
+                <div class="pv-info-container">
+                    <h2>{{ listing.title }}</h2>
+                    <p>Price: ${{ listing.price|floatformat:2 }}</p>
+                    <p>{{ listing.created_on }} (U.T.C)</p>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+{% endblock %}

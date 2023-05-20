@@ -1,0 +1,59 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+    <div class="lt-box">
+        <h1>Listing: {{ listing.title }}</h1>
+        <div class="lt-img-box">
+            {% if watchlist %}
+                <div class="wl-tag">WatchList</div>
+            {% endif %}
+            <img src="{{listing.img_url}}" class="lt-img"></img>
+        </div>
+        <p>{{listing.description}}</p>
+        <h2>${{ listing.price|floatformat:2 }}</h2>
+        <form action="{% url 'tg_wl' id=listing.id %}">
+            <input type="submit" value="Watchlist" class="btn btn-primary"> 
+        </form>
+        {% if listing.user.id == request.user.id%}
+            <form action="{% url 'close' id=listing.id %}">
+                <input type="submit" value="Close" class="btn btn-danger"> 
+            </form>
+        {% endif %}
+        {% if total %}
+            <div>{{total}} bid(s) so far.</div>
+        {% endif %}
+        <form action="{% url 'view' id=listing.id %}" method="post">
+            {% csrf_token %}
+            <input type="number" class="form-control" name="bid" id="bid" placeholder="Bid" min="{{ bid.bid|default:listing.price }}" step=".01">
+            <input type="submit" value="Place Bid" class="btn btn-primary">
+        </form>
+        <h2>Details</h2>
+        <ul>
+          <li>Listed by: {{listing.user}}</li>
+          {% if listing.category %}
+              <li>Category: <a href="{% url 'category_listing' category=listing.category %}">{{listing.category}}</a></li>
+          {% else %}
+              <li>No category listed</li>
+          {% endif %}
+          <li>Listed on: {{ listing.created_on }} (U.T.C.)</li>  
+        </ul>
+        <div class="cmt-box">
+            <h2>Comment Section</h2>
+            <form action="{% url 'comment' id=listing.id %}" method="post">
+                {% csrf_token %}
+                <input type="text" class="form-control" name="comment" placeholder="Add a comment...">
+                <input type="submit" value="Comment" class="btn btn-primary">
+            </form>
+            <div class="cmt-section">
+                {% if comments %}
+                {% for comment in comments %}
+                    <div class="cmt">
+                        <h2>{{comment.user.username}}</h2>
+                        <p>{{comment.comment}}</p>
+                    </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

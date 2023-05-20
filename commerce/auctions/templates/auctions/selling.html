@@ -1,0 +1,40 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+    <h2>Auctioning</h2>
+    {% if 'actives' %}
+    {% for active in actives %}
+      <a href="{% url 'view' id=active.id %}">
+        <div class="pv-container">
+            <div class="pv-img-container">
+                <img src="{{ active.img_url }}" class="pv-img">
+            </div>
+            <div class="pv-info-container">
+                <h2>{{ active.title }}</h2>
+                <p>Price: ${{ active.price|floatformat:2 }}</p>
+                <p>{{ active.created_on }} (U.T.C)</p>
+            </div>
+        </div>
+      </a>
+    {% endfor %}
+    {% else %}
+        No auction(s)
+    {% endif %}
+    {% if 'closeds' %}
+    <h2>Closed</h2>
+    {% for closed in closeds %}
+      <a href="{% url 'view' id=closed.id %}">
+        <div class="pv-container">
+            <div class="pv-img-container">
+                <img src="{{ closed.img_url }}" class="pv-img">
+            </div>
+            <div class="pv-info-container">
+                <h2>{{ closed.title }}</h2>
+                <p>Price: ${{ closed.price|floatformat:2 }}</p>
+                <p>{{ closed.created_on }} (U.T.C)</p>
+            </div>
+        </div>
+      </a>
+    {% endfor %}
+    {% endif %}
+{% endblock%}

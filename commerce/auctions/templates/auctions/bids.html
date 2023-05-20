@@ -1,0 +1,23 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+    <h1>Bids</h1>
+    {% if bids %}
+    {% for bid in bids %}
+        <a href="{% url 'view' id=bid.listing.id %}">
+          <div class="pv-container">
+              <div class="pv-img-container">
+                  <img src="{{ bid.listing.img_url }}" class="pv-img">
+              </div>
+              <div class="pv-info-container">
+                  <h2>{{ bid.listing.title }}</h2>
+                  <p>Price: ${{ bid.listing.price|floatformat:2 }}</p>
+                  <p>{{ bid.listing.created_on }} (U.T.C)</p>
+              </div>
+          </div>
+        </a>
+    {% endfor %}
+    {% else %}
+        No current bid(s) 
+    {% endif %}
+{% endblock %}
