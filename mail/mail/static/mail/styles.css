@@ -1,0 +1,15 @@
+textarea {
+    min-height: 400px;
+}
+
+.email-pv{
+    border: 1px solid;
+    padding: 2px 8px;
+}
+.email-pv-info{
+    display: flex;
+    justify-content: space-between;
+}
+span{
+    font-weight: 700;
+}
